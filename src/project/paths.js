@@ -1,5 +1,6 @@
 const fs = require('fs');
 const fxp = require('fast-xml-parser/src/parser');
+const path = require('path');
 
 const fxpOptions = {
   ignoreAttributes: false,
@@ -13,6 +14,8 @@ const getContent = (xmlFile) => {
 
   return fxp.parse(xmlContent.toString(), fxpOptions);
 };
+
+const getProjectBaseDirName = (projectPath) => (path.basename(projectPath));
 
 const getProjectPaths = productPath => {
 
@@ -84,3 +87,4 @@ const getProjectPaths = productPath => {
 };
 
 exports.get = getProjectPaths;
+exports.getProjectBaseDirName = getProjectBaseDirName;

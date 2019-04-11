@@ -1,5 +1,6 @@
 const fs = require('fs');
 const path = require('path');
+const paths = require('./paths');
 
 const getFiles = srcPath => fs.readdirSync(srcPath)
   .filter(file => fs.lstatSync(path.join(srcPath, file)).isFile());
@@ -30,10 +31,7 @@ const getProductName = (projectPath) => {
       return (imlFiles.length === 1) ? path.basename(imlFiles[0], '.iml') : false;
     },
     viaDirectoryName: () => {
-      if (!isIdeaDirExists) {
-        return false;
-      }
-      return path.basename(path.dirname(projectPath));
+      return paths.getProjectBaseDirName(projectPath);
     }
   };
 
